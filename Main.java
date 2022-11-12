@@ -1,39 +1,20 @@
 /*
-* The program gets a a vehicle
-* and it calculates the stats.
+* This is a standard reverse string program
+* that reverses the string inputed.
 *
 * @author  Jackson Naufal
 * @version 1.0
-* @since   2020-10-17
+* @since   2020-11-12
 *
-* This is a Vehicle program
+* This is a string reverse program
 */
 
+import java.util.Scanner;
 /**
- * This is the main CarStatus Class.
- * Class CarStatus
+ * This is a reverseString program.
  */
+
 final class Main {
-
-    /**
-    * This is 10.
-    */
-    public static final int TEN = 10;
-
-    /**
-    * This is 15.
-    */
-    public static final int FIFTEEN = 15;
-
-    /**
-     * This is 5.
-     */
-    public static final int FIVE = 5;
-
-    /**
-     * This is newSpeed.
-     */
-    public static final String NEWSPEED = "New speed: ";
 
     /**
     * Prevent instantiation.
@@ -46,7 +27,26 @@ final class Main {
 
     private Main() {
         throw new IllegalStateException("Cannot be instantiated");
+    }
 
+    /**
+     * Gets the reversed word.
+     *
+     * @param userWord The word that will get reversed
+     * @return returns the reversed word
+     */
+
+    public static String reverseString(final String userWord) {
+
+        final String reversed;
+
+        if (userWord.length() == 0) {
+            reversed = userWord;
+        } else {
+            reversed = reverseString(userWord.substring(1))
+                + (userWord.charAt(0));
+        }
+        return reversed;
     }
 
     /**
@@ -54,39 +54,22 @@ final class Main {
     *
     * @param args No args will be used
     */
+
     public static void main(final String[] args) {
 
-        final Bicycle bmx = new Bicycle("Red", 40);
-        System.out.println("Created Bmx bike.\nStatus:\n");
-        bmx.status();
+        // creates the input
+        final Scanner firstInput = new Scanner(System.in);
 
-        System.out.println("\nSet the cadence to 10");
-        bmx.accelerate(TEN);
-        bmx.status();
+        // gets user input
+        System.out.print("Enter your word: ");
+        final String userWord = firstInput.nextLine();
 
-        System.out.println("\nAccelerate By 15:");
-        bmx.accelerate(FIFTEEN);
-        bmx.status();
+        // the user inputted word
+        System.out.println("Before Reverse: " + userWord);
+        final String reversedDone = reverseString(userWord);
 
-        System.out.println("\nRing Bell.");
-        bmx.ringBell();
-
-        final Truck bigTruck = new Truck("Grey", "HGC-3456F", 200);
-        System.out.println("\nCreated a Truck. \nStatus:\n");
-        bigTruck.status();
-
-        System.out.println("\nAccelerating, 10 of power for ten seconds:");
-        bigTruck.accelerate(TEN, TEN);
-        System.out.println(NEWSPEED + bigTruck.getSpeed());
-
-        System.out.println("\nBreaking, 10 of power for 10 sec.");
-        bigTruck.accelerate(TEN, TEN);
-        System.out.println(NEWSPEED + bigTruck.getSpeed());
-
-        System.out.println("\nApplyed air pressure of 5:");
-        bigTruck.breaking(FIVE, FIVE, FIVE);
-        System.out.println(NEWSPEED + bigTruck.getSpeed());
-
+        // the word after it got reversed
+        System.out.println("After Reverse: " + reversedDone);
         System.out.println("\nDone!");
     }
 }
